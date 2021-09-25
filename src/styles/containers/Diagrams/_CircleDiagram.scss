@@ -1,0 +1,10 @@
+.diagramviewer {
+  overflow: hidden;
+  width: 100vw;
+  height: 98vh;
+  z-index: -100;
+}
+#circlediagram {
+  overflow: hidden;
+  position: relative;
+}

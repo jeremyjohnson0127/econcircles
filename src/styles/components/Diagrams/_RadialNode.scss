@@ -1,0 +1,140 @@
+.radialDialog > div {
+  width: 450px;
+  height: 450px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  text-align: center;
+  border-radius: 50%;
+  padding: 20px 0;
+
+  > h2 {
+    font-size: 22px;
+    font-weight: bold;
+  }
+
+  > section {
+    padding: 0 30px 30px !important;
+    margin: 0 !important;
+  }
+
+  > footer {
+    display: block;
+    padding-left: 20px;
+    margin-bottom: 20px;
+
+    > button {
+      margin: 0 !important;
+    }
+  }
+}
+
+.circlenode {
+  &.ellipse {
+    transition: rx 0.15s, ry 0.15s !important;
+  }
+  &.rectangle {
+    transition: width 0.15s, height 0.15s !important;
+  }
+}
+
+.circle-group {
+  &.parent-node {
+    animation: initShowUp 1s;
+  }
+
+  &.child-node {
+    opacity: 0;
+    pointer-events: none;
+
+    &.shown {
+      display: inline;
+      animation: showUp 0.5s;
+      opacity: 1;
+      pointer-events: auto;
+
+      .circlenode {
+        transition:
+          cx 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+          cy 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+          r 0.15s,
+          stroke-width 0.15s;
+      }
+    }
+
+    &.hidden {
+      animation: hideAway 0.25s;
+      opacity: 0;
+
+      .circlenode {
+        transition:
+          cx 1s cubic-bezier(0.19, 1, 0.22, 1),
+          cy 1s cubic-bezier(0.19, 1, 0.22, 1),
+          r 0.15s,
+          stroke-width 0.15s;
+      }
+    }
+
+    &.afterHidden {
+      display: none;
+    }
+  }
+}
+
+.circletext {
+  opacity: 0;
+  transition: opacity 0.5s;
+
+  tspan {
+    line-height: 1pt;
+    font-weight: bold;
+  }
+
+  &.shown {
+    opacity: 1;
+  }
+
+  &.hidden {
+    opacity: 1;
+    display: none;
+  }
+}
+
+.refresh-icon {
+  font-family: FontAwesome;
+  font-size: 1pt;
+  cursor: pointer;
+}
+
+/** Showing up an element */
+@keyframes showUp {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/** Hiding an element */
+@keyframes hideAway {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+/** Showing up an element with a little delay at the beginning */
+@keyframes initShowUp {
+  0% {
+    opacity: 0;
+  }
+  25% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
